@@ -12,9 +12,9 @@ public class Balon {
         this.yInicial = y;
     }
 
-    public void setPosicion(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public void actualizarPosicion(Point inicio, Point destino, float progreso) {
+        this.x = (int)(inicio.x + (destino.x - inicio.x) * progreso);
+        this.y = (int)(inicio.y + (destino.y - inicio.y) * progreso);
     }
 
     public void reset() {

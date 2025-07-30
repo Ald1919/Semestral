@@ -12,13 +12,14 @@ public class JuegoPanel extends JPanel {
     private final Rectangle[] zonas = new Rectangle[9];
     private String mensaje = "Haz clic en un área para patear";
     private boolean animando = false;
-    private Timer timer;
+    private Timer timerAnimacion;
 
     public JuegoPanel(JFrame frame, double dificultad) {
         this.frame = frame;
         this.dificultad = dificultad;
         setLayout(null);
         setBackground(new Color(0, 100, 0));
+        setDoubleBuffered(true);
 
         definirZonas();
 
@@ -32,9 +33,8 @@ public class JuegoPanel extends JPanel {
 
         JButton volver = new JButton("Volver al Menú");
         volver.setBounds(20, 20, 150, 30);
-        volver.setFont(new Font("Arial", Font.BOLD, 12));
         volver.addActionListener(e -> {
-            if (timer != null) timer.stop();
+            if (timerAnimacion != null) timerAnimacion.stop();
             frame.setContentPane(new MenuPanel(frame));
             frame.revalidate();
         });
@@ -43,13 +43,13 @@ public class JuegoPanel extends JPanel {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (animando) return;
-
-                Point click = e.getPoint();
-                for (int i = 0; i < zonas.length; i++) {
-                    if (zonas[i].contains(click)) {
-                        animarDisparo(i);
-                        break;
+                if (!animando) {
+                    Point click = e.getPoint();
+                    for (int i = 0; i < zonas.length; i++) {
+                        if (zonas[i].contains(click)) {
+                            iniciarDisparo(i);
+                            break;
+                        }
                     }
                 }
             }
@@ -69,87 +69,76 @@ public class JuegoPanel extends JPanel {
         }
     }
 
-    private void animarDisparo(int zonaIndex) {
+    private void iniciarDisparo(int zonaIndex) {
         animando = true;
         Rectangle zonaDisparo = zonas[zonaIndex];
-        Point destino = new Point(zonaDisparo.x + zonaDisparo.width/2, zonaDisparo.y + zonaDisparo.height/2);
+        Point destinoBalon = new Point(
+                zonaDisparo.x + zonaDisparo.width/2,
+                zonaDisparo.y + zonaDisparo.height/2
+        );
+        Point inicioBalon = new Point(balon.getX(), balon.getY());
 
-        final Point posicionInicial = new Point(balon.getX(), balon.getY());
+        configurarMovimientoPortero(zonaDisparo, zonaIndex);
 
-        timer = new Timer(10, new ActionListener() {
-            int steps = 0;
-            final int totalSteps = 30;
+        timerAnimacion = new Timer(20, new ActionListener() {
+            float progreso = 0f;
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (steps >= totalSteps) {
+                if (progreso >= 1.0f) {
                     ((Timer)e.getSource()).stop();
-                    verificarResultado(zonaDisparo, zonaIndex);
 
-                    Timer returnTimer = new Timer(10, new ActionListener() {
-                        int returnSteps = 0;
+                    boolean atajada = porteroEnZona(zonaDisparo);
+                    actualizarMarcador(atajada);
 
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            if (returnSteps >= totalSteps) {
-                                ((Timer)e.getSource()).stop();
-                                resetearBalon();
-                            } else {
-                                float ratio = (float)returnSteps/totalSteps;
-                                int currentX = (int)(destino.x - (destino.x - posicionInicial.x) * ratio);
-                                int currentY = (int)(destino.y - (destino.y - posicionInicial.y) * ratio);
-                                balon.setPosicion(currentX, currentY);
-                                returnSteps++;
-                            }
-                            repaint();
-                        }
-                    });
-                    returnTimer.start();
+                    // Esperar y resetear
+                    new Timer(1000, ev -> {
+                        balon.reset();
+                        portero.regresarAlCentro();
+                        animando = false;
+                        mensaje = "Haz clic en un área para patear";
+                        repaint();
+                    }).start();
+
                 } else {
-                    float ratio = (float)steps/totalSteps;
-                    int currentX = (int)(posicionInicial.x + (destino.x - posicionInicial.x) * ratio);
-                    int currentY = (int)(posicionInicial.y + (destino.y - posicionInicial.y) * ratio);
-                    balon.setPosicion(currentX, currentY);
-                    steps++;
+                    progreso += 0.04f; // Velocidad ligeramente aumentada
+                    balon.actualizarPosicion(inicioBalon, destinoBalon, progreso);
                 }
                 repaint();
             }
         });
-        timer.start();
+        timerAnimacion.start();
     }
 
-    private void verificarResultado(Rectangle zonaDisparo, int zonaIndex) {
+    private boolean porteroEnZona(Rectangle zonaDisparo) {
+        Rectangle porteroRect = new Rectangle(portero.getX(), portero.getY(),
+                portero.getAncho(), portero.getAlto());
+        return porteroRect.intersects(zonaDisparo);
+    }
+
+    private void configurarMovimientoPortero(Rectangle zonaDisparo, int zonaIndex) {
         Random rand = new Random();
-        boolean atajada = false;
+        boolean intentaAtajar = rand.nextDouble() < dificultad;
+        int zonaPortero;
 
-        // El portero decide si intenta atajar
-        if (rand.nextDouble() < dificultad) {
-            // Elige una zona al azar (con mayor probabilidad de acertar en dificultad alta)
-            int zonaPortero;
-            if (dificultad == 0.95) zonaPortero = rand.nextDouble() < 0.8 ? zonaIndex : rand.nextInt(9);
-            else if (dificultad == 0.5) zonaPortero = rand.nextDouble() < 0.5 ? zonaIndex : rand.nextInt(9);
-            else zonaPortero = rand.nextDouble() < 0.2 ? zonaIndex : rand.nextInt(9);
-
-            Rectangle zonaAtajar = zonas[zonaPortero];
-            portero.moverA(
-                    zonaAtajar.x + zonaAtajar.width/2 - portero.getAncho()/2,
-                    zonaAtajar.y + zonaAtajar.height/2 - portero.getAlto()/3,
-                    zonaAtajar
-            );
-
-            // Ataja solo si fue a la zona correcta
-            atajada = (zonaPortero == zonaIndex);
+        if (intentaAtajar) {
+            if (dificultad >= 0.7) zonaPortero = rand.nextDouble() < 0.8 ? zonaIndex : rand.nextInt(9);
+            else if (dificultad >= 0.4) zonaPortero = rand.nextDouble() < 0.5 ? zonaIndex : rand.nextInt(9);
+            else zonaPortero = rand.nextDouble() < 0.3 ? zonaIndex : rand.nextInt(9);
         } else {
-            // El portero falla y va a una zona aleatoria
-            int zonaAleatoria = rand.nextInt(9);
-            portero.moverA(
-                    zonas[zonaAleatoria].x + zonas[zonaAleatoria].width/2 - portero.getAncho()/2,
-                    zonas[zonaAleatoria].y + zonas[zonaAleatoria].height/2 - portero.getAlto()/3,
-                    zonas[zonaAleatoria]
-            );
-            atajada = false;
+            zonaPortero = rand.nextInt(9);
         }
 
+        Rectangle zonaDestino = zonas[zonaPortero];
+        Point destinoPortero = new Point(
+                zonaDestino.x + zonaDestino.width/2 - portero.getAncho()/2,
+                zonaDestino.y + zonaDestino.height/2 - portero.getAlto()/3
+        );
+
+        portero.moverA(destinoPortero.x, destinoPortero.y);
+    }
+
+    private void actualizarMarcador(boolean atajada) {
         if (atajada) {
             marcador.incrementarAtajadas();
             mensaje = "¡Atajada del portero!";
@@ -159,13 +148,6 @@ public class JuegoPanel extends JPanel {
         }
     }
 
-    private void resetearBalon() {
-        balon.reset();
-        animando = false;
-        mensaje = "Haz clic en un área para patear";
-        repaint();
-    }
-
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -173,12 +155,6 @@ public class JuegoPanel extends JPanel {
         // Dibujar cancha
         g.setColor(new Color(0, 100, 0));
         g.fillRect(0, 0, getWidth(), getHeight());
-        g.setColor(new Color(0, 120, 0));
-        for (int i = 0; i < getWidth(); i += 20) {
-            for (int j = 0; j < getHeight(); j += 20) {
-                g.drawLine(i, j, i, j);
-            }
-        }
 
         // Dibujar áreas de tiro
         g.setColor(new Color(255, 255, 255, 50));
@@ -193,15 +169,6 @@ public class JuegoPanel extends JPanel {
         g.setColor(Color.WHITE);
         g.drawRect(150, 80, 500, 250);
 
-        // Dibujar red
-        g.setColor(new Color(200, 200, 200, 150));
-        for (int i = 150; i <= 650; i += 15) {
-            g.drawLine(i, 80, i, 330);
-        }
-        for (int j = 80; j <= 330; j += 15) {
-            g.drawLine(150, j, 650, j);
-        }
-
         // Dibujar elementos
         portero.dibujar(g);
         balon.dibujar(g);
@@ -209,16 +176,15 @@ public class JuegoPanel extends JPanel {
         // Dibujar marcador
         g.setColor(Color.WHITE);
         g.setFont(new Font("Arial", Font.BOLD, 20));
-        int marcadorX = 600;
-        g.drawString("Goles: " + marcador.getGoles(), marcadorX, 30);
-        g.drawString("Atajadas: " + marcador.getAtajadas(), marcadorX, 60);
+        g.drawString("Goles: " + marcador.getGoles(), 600, 30);
+        g.drawString("Atajadas: " + marcador.getAtajadas(), 600, 60);
 
         String dificultadTexto;
         if (dificultad <= 0.3) dificultadTexto = "Fácil (20%)";
         else if (dificultad <= 0.6) dificultadTexto = "Medio (50%)";
-        else dificultadTexto = "Difícil (95%)";
+        else dificultadTexto = "Difícil (80%)";
 
-        g.drawString("Dificultad: " + dificultadTexto, marcadorX, 90);
+        g.drawString("Dificultad: " + dificultadTexto, 600, 90);
 
         // Mensaje
         Color msgColor = mensaje.contains("GOOOOOOL") ? Color.GREEN :

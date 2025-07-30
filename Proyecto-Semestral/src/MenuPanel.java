@@ -30,7 +30,7 @@ public class MenuPanel extends JPanel {
         });
 
         dificil.addActionListener(e -> {
-            frame.setContentPane(new JuegoPanel(frame, 0.95));
+            frame.setContentPane(new JuegoPanel(frame, 0.8));
             frame.revalidate();
         });
 

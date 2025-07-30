@@ -7,44 +7,36 @@ public class Portero {
     private final int ancho = 60, alto = 90;
     private Timer timerMovimiento;
     private final int xInicial, yInicial;
-    private Rectangle zonaActual;
-    private int pasosAnimacion;
+    private boolean regresandoAlCentro = false;
 
     public Portero(int x, int y) {
         this.x = x;
         this.y = y;
         this.xInicial = x;
         this.yInicial = y;
-        this.zonaActual = null;
-        this.pasosAnimacion = 0;
     }
 
-    public void moverA(int nuevoX, int nuevoY, Rectangle zonaDestino) {
-        if (timerMovimiento != null) {
-            timerMovimiento.stop();
-        }
+    public void moverA(int nuevoX, int nuevoY) {
+        if (timerMovimiento != null) timerMovimiento.stop();
 
-        this.zonaActual = zonaDestino;
+        this.regresandoAlCentro = false;
         final int inicioX = x;
         final int inicioY = y;
         final int totalPasos = 15;
-        this.pasosAnimacion = 0;
+        int[] pasos = {0};
 
-        timerMovimiento = new Timer(10, new ActionListener() {
+        timerMovimiento = new Timer(20, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (pasosAnimacion >= totalPasos) {
+                if (pasos[0] >= totalPasos) {
                     ((Timer)e.getSource()).stop();
                     x = nuevoX;
                     y = nuevoY;
-
-                    // Regresar al centro después de 1 segundo
-                    new Timer(1000, ev -> regresarAlCentro()).start();
                 } else {
-                    float ratio = (float)pasosAnimacion/totalPasos;
+                    float ratio = (float)pasos[0]/totalPasos;
                     x = (int)(inicioX + (nuevoX - inicioX) * ratio);
                     y = (int)(inicioY + (nuevoY - inicioY) * ratio);
-                    pasosAnimacion++;
+                    pasos[0]++;
                 }
             }
         });
@@ -52,36 +44,31 @@ public class Portero {
     }
 
     public void regresarAlCentro() {
-        if (timerMovimiento != null) {
-            timerMovimiento.stop();
-        }
+        if (timerMovimiento != null) timerMovimiento.stop();
 
+        this.regresandoAlCentro = true;
         final int inicioX = x;
         final int inicioY = y;
         final int totalPasos = 15;
-        this.pasosAnimacion = 0;
+        int[] pasos = {0};
 
-        timerMovimiento = new Timer(10, new ActionListener() {
+        timerMovimiento = new Timer(20, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (pasosAnimacion >= totalPasos) {
+                if (pasos[0] >= totalPasos) {
                     ((Timer)e.getSource()).stop();
                     x = xInicial;
                     y = yInicial;
-                    zonaActual = null;
+                    regresandoAlCentro = false;
                 } else {
-                    float ratio = (float)pasosAnimacion/totalPasos;
+                    float ratio = (float)pasos[0]/totalPasos;
                     x = (int)(inicioX + (xInicial - inicioX) * ratio);
                     y = (int)(inicioY + (yInicial - inicioY) * ratio);
-                    pasosAnimacion++;
+                    pasos[0]++;
                 }
             }
         });
         timerMovimiento.start();
-    }
-
-    public boolean estaEnZona(Rectangle zona) {
-        return zonaActual != null && zonaActual.equals(zona);
     }
 
     public int getX() { return x; }
