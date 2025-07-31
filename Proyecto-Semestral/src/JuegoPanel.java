@@ -123,7 +123,6 @@ public class JuegoPanel extends JPanel {
         Point destinoPortero = calcularMovimientoPortero(zonaDisparo, zonaIndex);
         portero.moverA(destinoPortero.x, destinoPortero.y);
 
-        // Animación del balón
         timerAnimacionBalon = new Timer(20, new ActionListener() {
             float progreso = 0f;
             final Point inicio = new Point(balon.getX(), balon.getY());
@@ -315,7 +314,6 @@ public class JuegoPanel extends JPanel {
             dificultadTexto = "Dificultad: Fácil";
         }
         g.drawString(dificultadTexto, screenWidth - 200, marginY + 60);
-        // --- FIN DEL CAMBIO ---
     }
 
     private void dibujarMensaje(Graphics g) {
