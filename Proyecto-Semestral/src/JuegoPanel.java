@@ -37,7 +37,7 @@ public class JuegoPanel extends JPanel {
         arcoAncho = (int) (screenWidth * 0.6); 
         arcoAlto = (int) (screenHeight * 0.4); 
         arcoX = (screenWidth - arcoAncho) / 2; 
-        arcoY = (int) (screenHeight * 0.1); // Empezar un poco más abajo del borde superior
+        arcoY = (int) (screenHeight * 0.1); 
 
         definirZonas();
 
