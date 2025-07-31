@@ -53,7 +53,7 @@ public class MenuPanel extends JPanel {
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.gridwidth = 3;
-        gbc.weighty = 0.6; // Da la mayor parte del espacio vertical a los botones
+        gbc.weighty = 0.6;
         add(buttonContainer, gbc);
 
         backgroundImage = createBackgroundImage();
