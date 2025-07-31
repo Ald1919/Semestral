@@ -87,7 +87,6 @@ public class Penalty {
                     }
                 }
 
-                // Textos ajustados para pantalla completa y para evitar logos
                 // UNIVERSIDAD
                 g2d.setFont(new Font("Arial", Font.BOLD, 48));
                 String universidad = "UNIVERSIDAD TECNOLÓGICA DE PANAMÁ";
