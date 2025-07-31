@@ -11,7 +11,7 @@ public class MenuPanel extends JPanel {
         setLayout(new GridBagLayout()); 
 
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.fill = GridBagConstraints.BOTH; // Rellenar espacio disponible
+        gbc.fill = GridBagConstraints.BOTH;
         gbc.insets = new Insets(20, 20, 20, 20); // Márgenes externos para todos los componentes
 
         // 1. Título del juego
