@@ -56,7 +56,6 @@ public class MenuPanel extends JPanel {
         gbc.weighty = 0.6; // Da la mayor parte del espacio vertical a los botones
         add(buttonContainer, gbc);
 
-        // El fondo se crea y dibuja en paintComponent
         backgroundImage = createBackgroundImage();
     }
 
