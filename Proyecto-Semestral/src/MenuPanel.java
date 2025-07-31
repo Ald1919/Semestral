@@ -24,7 +24,6 @@ public class MenuPanel extends JPanel {
         gbc.weighty = 0.2; 
         add(titleLabel, gbc);
 
-        // 2. Panel de botones (para agruparlos)
         JPanel buttonContainer = new JPanel(new GridBagLayout());
         buttonContainer.setOpaque(false);
         GridBagConstraints buttonGbc = new GridBagConstraints();
