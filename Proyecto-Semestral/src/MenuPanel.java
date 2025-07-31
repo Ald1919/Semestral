@@ -78,7 +78,7 @@ public class MenuPanel extends JPanel {
         button.setFocusPainted(false);
         button.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(Color.BLACK, 4), // Borde más grueso
-                BorderFactory.createEmptyBorder(15, 40, 15, 40) // Más padding interno
+                BorderFactory.createEmptyBorder(15, 40, 15, 40)
         ));
         return button;
     }
