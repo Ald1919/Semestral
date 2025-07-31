@@ -40,8 +40,6 @@ public class JuegoPanel extends JPanel {
         arcoY = (int) (screenHeight * 0.1); 
 
         definirZonas();
-
-        // Posicionar el portero y el balón en relación al arco y la pantalla
         portero = new Portero(
                 arcoX + arcoAncho / 2 - 40,
                 arcoY + arcoAlto - 80,
@@ -61,7 +59,6 @@ public class JuegoPanel extends JPanel {
     }
 
     private void definirZonas() {
-        // Definir las zonas relativas al arco
         int zonaAncho = arcoAncho / 3;
         int zonaAlto = arcoAlto / 3;
 
