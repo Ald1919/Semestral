@@ -32,7 +32,7 @@ public class Balon {
         g.setColor(Color.BLACK);
         g.drawOval(x - radio, y - radio, radio * 2, radio * 2);
 
-        // Diseño del balón (simple pentagon for effect)
+        // Diseño del balón 
         g.setColor(Color.BLACK);
         int[] xPoints = new int[5];
         int[] yPoints = new int[5];
