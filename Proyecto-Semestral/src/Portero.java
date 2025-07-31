@@ -8,7 +8,7 @@ public class Portero {
     private Timer timerMovimiento;
     private final int xInicial, yInicial;
     private boolean regresandoAlCentro = false;
-    private final JPanel parentPanel; // Reference to the panel that contains the portero
+    private final JPanel parentPanel;
 
     public Portero(int x, int y, JPanel parentPanel) {
         this.x = x;
