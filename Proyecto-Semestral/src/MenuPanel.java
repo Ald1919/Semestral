@@ -106,6 +106,5 @@ public class MenuPanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
-        // No hay lógica para dibujar logos aquí, ya que están en Penalty
     }
 }
