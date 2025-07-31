@@ -29,7 +29,7 @@ public class MenuPanel extends JPanel {
         GridBagConstraints buttonGbc = new GridBagConstraints();
         buttonGbc.gridwidth = GridBagConstraints.REMAINDER;
         buttonGbc.fill = GridBagConstraints.HORIZONTAL;
-        buttonGbc.insets = new Insets(20, 150, 20, 150); // Márgenes más grandes para los botones
+        buttonGbc.insets = new Insets(20, 150, 20, 150);
 
         Dimension buttonSize = new Dimension(500, 100); // Tamaño preferido para los botones
 
