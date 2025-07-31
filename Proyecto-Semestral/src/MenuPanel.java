@@ -8,7 +8,7 @@ public class MenuPanel extends JPanel {
 
     public MenuPanel(JFrame frame) {
         this.frame = frame;
-        setLayout(new GridBagLayout()); // Usar GridBagLayout para control detallado
+        setLayout(new GridBagLayout()); 
 
         // --- Configuración de componentes y layout para pantalla completa ---
         GridBagConstraints gbc = new GridBagConstraints();
