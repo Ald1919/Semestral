@@ -14,7 +14,6 @@ public class MenuPanel extends JPanel {
         gbc.fill = GridBagConstraints.BOTH;
         gbc.insets = new Insets(20, 20, 20, 20);
 
-        // 1. Título del juego
         JLabel titleLabel = new JLabel("JUEGO DE PENALES", SwingConstants.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 80)); // Fuente más grande
         titleLabel.setForeground(Color.WHITE);
