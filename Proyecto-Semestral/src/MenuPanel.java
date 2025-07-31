@@ -20,7 +20,7 @@ public class MenuPanel extends JPanel {
 
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.gridwidth = 3; // Ocupa las 3 columnas para el título
+        gbc.gridwidth = 3;
         gbc.weighty = 0.2; // Da más espacio vertical al título
         add(titleLabel, gbc);
 
