@@ -10,7 +10,6 @@ public class MenuPanel extends JPanel {
         this.frame = frame;
         setLayout(new GridBagLayout()); 
 
-        // --- Configuración de componentes y layout para pantalla completa ---
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.BOTH; // Rellenar espacio disponible
         gbc.insets = new Insets(20, 20, 20, 20); // Márgenes externos para todos los componentes
