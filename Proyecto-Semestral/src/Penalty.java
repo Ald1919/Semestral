@@ -87,7 +87,6 @@ public class Penalty {
                     }
                 }
 
-                // UNIVERSIDAD
                 g2d.setFont(new Font("Arial", Font.BOLD, 48));
                 String universidad = "UNIVERSIDAD TECNOLÓGICA DE PANAMÁ";
                 int uniWidth = g2d.getFontMetrics().stringWidth(universidad);
