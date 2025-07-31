@@ -31,7 +31,7 @@ public class MenuPanel extends JPanel {
         buttonGbc.fill = GridBagConstraints.HORIZONTAL;
         buttonGbc.insets = new Insets(20, 150, 20, 150);
 
-        Dimension buttonSize = new Dimension(500, 100); // Tamaño preferido para los botones
+        Dimension buttonSize = new Dimension(500, 100);
 
         JButton easyButton = createDifficultyButton("Fácil", new Color(100, 255, 100), 0.2);
         easyButton.setPreferredSize(buttonSize);
