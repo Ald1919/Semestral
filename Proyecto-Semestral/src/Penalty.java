@@ -60,7 +60,6 @@ public class Penalty {
                 g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
                 g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
 
-                // Fondo degradado
                 GradientPaint gradient = new GradientPaint(0, 0, new Color(0, 80, 0), 0, getHeight(), Color.BLACK);
                 g2d.setPaint(gradient);
                 g2d.fillRect(0, 0, getWidth(), getHeight());
