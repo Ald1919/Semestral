@@ -99,7 +99,7 @@ public class Penalty {
 
                 g2d.setFont(new Font("Arial", Font.BOLD, 28));
                 int textStartX = getWidth() / 8; 
-                g2d.drawString("Carrera: LICENCIATURA EN INGENIERÍA DE SOFTWARE", textStartX, 400); // Mover más abajo
+                g2d.drawString("Carrera: LICENCIATURA EN INGENIERÍA DE SOFTWARE", textStartX, 400);
                 g2d.drawString("Proyecto: Juego de Penales", textStartX, 440);
                 g2d.drawString("Curso: PROGRAMACIÓN DE SOFTWARE I", textStartX, 480);
 
