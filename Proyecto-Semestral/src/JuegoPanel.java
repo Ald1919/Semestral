@@ -35,7 +35,7 @@ public class JuegoPanel extends JPanel {
 
         // Definir el tamaño y la posición del arco de forma proporcional
         arcoAncho = (int) (screenWidth * 0.6); 
-        arcoAlto = (int) (screenHeight * 0.4); // 40% del alto de la pantalla
+        arcoAlto = (int) (screenHeight * 0.4); 
         arcoX = (screenWidth - arcoAncho) / 2; // Centrar horizontalmente
         arcoY = (int) (screenHeight * 0.1); // Empezar un poco más abajo del borde superior
 
