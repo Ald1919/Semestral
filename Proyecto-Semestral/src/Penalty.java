@@ -117,7 +117,6 @@ public class Penalty {
                 g2d.drawString("3. LIYI HE - [Cédula]", textStartX + 20, 645);
                 g2d.drawString("4. ALDAHIR VERGARA - [Cédula]", textStartX + 20, 680);
 
-                // Profesor y Fecha
                 g2d.setFont(new Font("Arial", Font.BOLD, 28));
                 g2d.drawString("Profesor: RODRIGO YÁNGÜEZ", textStartX, getHeight() - 100);
 
