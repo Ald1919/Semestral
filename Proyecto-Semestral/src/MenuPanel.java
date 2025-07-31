@@ -12,7 +12,7 @@ public class MenuPanel extends JPanel {
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.BOTH;
-        gbc.insets = new Insets(20, 20, 20, 20); // Márgenes externos para todos los componentes
+        gbc.insets = new Insets(20, 20, 20, 20);
 
         // 1. Título del juego
         JLabel titleLabel = new JLabel("JUEGO DE PENALES", SwingConstants.CENTER);
