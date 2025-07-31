@@ -119,7 +119,6 @@ public class JuegoPanel extends JPanel {
                 zonaDisparo.y + zonaDisparo.height / 2
         );
 
-        // Animación del portero
         Point destinoPortero = calcularMovimientoPortero(zonaDisparo, zonaIndex);
         portero.moverA(destinoPortero.x, destinoPortero.y);
 
