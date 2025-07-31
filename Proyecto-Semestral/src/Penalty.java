@@ -97,7 +97,6 @@ public class Penalty {
                 int facWidth = g2d.getFontMetrics().stringWidth(facultad);
                 g2d.drawString(facultad, (getWidth() - facWidth) / 2, 310); 
 
-                // Carrera, Proyecto, Curso
                 g2d.setFont(new Font("Arial", Font.BOLD, 28));
                 int textStartX = getWidth() / 8; // Mantener un margen izquierdo
                 g2d.drawString("Carrera: LICENCIATURA EN INGENIERÍA DE SOFTWARE", textStartX, 400); // Mover más abajo
