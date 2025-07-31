@@ -108,7 +108,7 @@ public class Penalty {
                 g2d.setFont(new Font("Arial", Font.PLAIN, 24));
                 g2d.drawString("1. FELIX CHUNG - 8-1035-1686", textStartX + 20, 575);
                 g2d.drawString("2. ALEXIS HE - 8-1032-619", textStartX + 20, 610);
-                g2d.drawString("3. LIYI HE - [Cédula]", textStartX + 20, 645);
+                g2d.drawString("3. LIYI HE - 8-1010-1496", textStartX + 20, 645);
                 g2d.drawString("4. ALDAHIR VERGARA - 8-1026-2487", textStartX + 20, 680);
 
                 g2d.setFont(new Font("Arial", Font.BOLD, 28));
