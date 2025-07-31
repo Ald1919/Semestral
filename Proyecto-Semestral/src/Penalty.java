@@ -103,7 +103,6 @@ public class Penalty {
                 g2d.drawString("Proyecto: Juego de Penales", textStartX, 440);
                 g2d.drawString("Curso: PROGRAMACIÓN DE SOFTWARE I", textStartX, 480);
 
-                // Integrantes
                 g2d.drawString("Integrantes:", textStartX, 540); // Mover más abajo
                 g2d.setFont(new Font("Arial", Font.PLAIN, 24));
                 g2d.drawString("1. FELIX CHUNG - [Cédula]", textStartX + 20, 575);
