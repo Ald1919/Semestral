@@ -38,7 +38,7 @@ public class Portero {
                 x = (int)(inicioX + (nuevoX - inicioX) * ratio);
                 y = (int)(inicioY + (nuevoY - inicioY) * ratio);
                 pasos[0]++;
-                parentPanel.repaint(); // Request repaint on each step
+                parentPanel.repaint();
             }
         });
         timerMovimiento.start();
