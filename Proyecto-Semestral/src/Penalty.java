@@ -90,7 +90,7 @@ public class Penalty {
                 g2d.setFont(new Font("Arial", Font.BOLD, 48));
                 String universidad = "UNIVERSIDAD TECNOLÓGICA DE PANAMÁ";
                 int uniWidth = g2d.getFontMetrics().stringWidth(universidad);
-                g2d.drawString(universidad, (getWidth() - uniWidth) / 2, 250); // Mover más abajo
+                g2d.drawString(universidad, (getWidth() - uniWidth) / 2, 250);
 
                 // FACULTAD
                 g2d.setFont(new Font("Arial", Font.BOLD, 36));
