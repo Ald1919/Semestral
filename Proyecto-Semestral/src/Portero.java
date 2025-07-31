@@ -59,7 +59,7 @@ public class Portero {
                 x = xInicial;
                 y = yInicial;
                 regresandoAlCentro = false;
-                parentPanel.repaint(); // Final repaint after animation ends
+                parentPanel.repaint(); 
             } else {
                 float ratio = (float)pasos[0]/totalPasos;
                 x = (int)(inicioX + (xInicial - inicioX) * ratio);
