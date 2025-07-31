@@ -36,11 +36,11 @@ public class Balon {
         g.setColor(Color.BLACK);
         int[] xPoints = new int[5];
         int[] yPoints = new int[5];
-        double angleOffset = Math.PI / 10; // To make one point face up
+        double angleOffset = Math.PI / 10; 
         for (int i = 0; i < 5; i++) {
             xPoints[i] = (int)(x + radio * 0.7 * Math.cos(i * 2 * Math.PI / 5 + angleOffset));
             yPoints[i] = (int)(y + radio * 0.7 * Math.sin(i * 2 * Math.PI / 5 + angleOffset));
         }
-        g.fillPolygon(xPoints, yPoints, 5); // Filled pentagon
+        g.fillPolygon(xPoints, yPoints, 5); 
     }
 }
