@@ -1,6 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage; // Para crear la imagen de fondo
+import java.awt.image.BufferedImage; 
 
 public class MenuPanel extends JPanel {
     private final JFrame frame;
