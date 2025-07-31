@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 
 public class MenuPanel extends JPanel {
     private final JFrame frame;
-    private final Image backgroundImage; // La imagen de fondo generada
+    private final Image backgroundImage; 
 
     public MenuPanel(JFrame frame) {
         this.frame = frame;
