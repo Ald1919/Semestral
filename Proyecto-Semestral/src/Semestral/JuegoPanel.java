@@ -141,17 +141,12 @@ public class JuegoPanel extends JPanel {
 
     private Point calcularMovimientoPortero(Rectangle zonaDisparo, int zonaIndex) {
         Random rand = new Random();
-        boolean intentaAtajar = rand.nextDouble() < dificultad;
         int zonaPortero;
 
-        if (intentaAtajar) {
-            if (rand.nextDouble() < getProbabilidadAcertar()) {
-                zonaPortero = zonaIndex;
-            } else {
-                zonaPortero = rand.nextInt(9);
-            }
+        if (rand.nextDouble() < getProbabilidadAcertar()) {
+            zonaPortero = zonaIndex; // Moverse a la zona correcta
         } else {
-            zonaPortero = rand.nextInt(9);
+            zonaPortero = rand.nextInt(9); // Moverse a una zona aleatoria
         }
 
         Rectangle zonaDestino = zonas[zonaPortero];
@@ -162,9 +157,9 @@ public class JuegoPanel extends JPanel {
     }
 
     private double getProbabilidadAcertar() {
-        if (dificultad >= 0.75) return 0.95;
-        if (dificultad >= 0.45) return 0.50;
-        return 0.20;
+        if (dificultad >= 0.75) return 0.90; // 90% de atajada en difícil
+        if (dificultad >= 0.45) return 0.60; // 60% de atajada en medio
+        return 0.30; // 30% de atajada en fácil
     }
 
     private void finalizarDisparo(Rectangle zonaDisparo) {
