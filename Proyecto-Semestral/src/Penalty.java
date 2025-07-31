@@ -66,7 +66,6 @@ public class Penalty {
 
                 g2d.setColor(Color.WHITE);
 
-                // Dibujar logos
                 int topMargin = 50;
                 int sideMargin = 50;
                 int logoBaseWidth = 200;
