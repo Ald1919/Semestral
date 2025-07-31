@@ -72,7 +72,7 @@ public class MenuPanel extends JPanel {
 
     private JButton createStyledButton(String text, Color color) {
         JButton button = new JButton(text);
-        button.setFont(new Font("Arial", Font.BOLD, 36)); // Fuente de botón más grande
+        button.setFont(new Font("Arial", Font.BOLD, 36));
         button.setBackground(color);
         button.setForeground(Color.BLACK);
         button.setFocusPainted(false);
