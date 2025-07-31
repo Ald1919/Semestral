@@ -19,7 +19,7 @@ public class JuegoPanel extends JPanel {
     private int screenWidth;
     private int screenHeight;
 
-    // Variables para las dimensiones y posición del arco (portería)
+    // Variables para las dimensiones y posición de la portería
     private int arcoX, arcoY, arcoAncho, arcoAlto;
 
     public JuegoPanel(JFrame frame, double dificultad) {
