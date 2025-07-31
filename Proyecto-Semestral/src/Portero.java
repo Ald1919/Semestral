@@ -32,7 +32,7 @@ public class Portero {
                 detenerAnimacion();
                 x = nuevoX;
                 y = nuevoY;
-                parentPanel.repaint(); // Final repaint after animation ends
+                parentPanel.repaint(); 
             } else {
                 float ratio = (float)pasos[0]/totalPasos;
                 x = (int)(inicioX + (nuevoX - inicioX) * ratio);
