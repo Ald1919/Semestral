@@ -309,7 +309,6 @@ public class JuegoPanel extends JPanel {
         g.drawString("Goles: " + marcador.getGoles(), screenWidth - 200, marginY);
         g.drawString("Atajadas: " + marcador.getAtajadas(), screenWidth - 200, marginY + 30);
 
-        // --- CAMBIO AQUÍ: QUITAR PORCENTAJES ---
         String dificultadTexto;
         if (dificultad >= 0.75) {
             dificultadTexto = "Dificultad: Difícil";
