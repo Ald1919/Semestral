@@ -92,7 +92,6 @@ public class Penalty {
                 int uniWidth = g2d.getFontMetrics().stringWidth(universidad);
                 g2d.drawString(universidad, (getWidth() - uniWidth) / 2, 250);
 
-                // FACULTAD
                 g2d.setFont(new Font("Arial", Font.BOLD, 36));
                 String facultad = "FACULTAD DE INGENIERÍA DE SISTEMAS COMPUTACIONALES";
                 int facWidth = g2d.getFontMetrics().stringWidth(facultad);
