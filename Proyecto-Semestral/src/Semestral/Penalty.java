@@ -9,10 +9,17 @@ import java.net.URL;
 public class Penalty {
     private static Image logoUniversidad;
     private static Image logoFacultad;
+    private static Sonido sonido;
 
     public static void main(String[] args) {
+        sonido = new Sonido();
+        sonido.iniciarMusicaFondo();
         loadLogos();
         SwingUtilities.invokeLater(() -> showPresentationScreen());
+    }
+
+    public static Sonido getSonido() {
+        return sonido;
     }
 
     private static void loadLogos() {
@@ -126,6 +133,7 @@ public class Penalty {
         startButton.setFocusPainted(false);
         startButton.setBorder(BorderFactory.createEmptyBorder(15, 40, 15, 40));
         startButton.addActionListener(e -> {
+            sonido.reproducirClick();
             presentationFrame.dispose();
             startGame();
         });
