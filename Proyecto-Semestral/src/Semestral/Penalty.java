@@ -1,4 +1,5 @@
 package Semestral; //aqui inicia todo el juegazo
+//este es nuestro main, literalmente está de todo (datos, imagenes, sonido, etc)
 
 import javax.swing.*;
 import java.awt.*;
@@ -7,25 +8,25 @@ import java.text.SimpleDateFormat;
 import java.net.URL;
 
 public class Penalty {
-    private static Image logoUniversidad;
+    private static Image logoUniversidad; //están en png 
     private static Image logoFacultad;
     private static Sonido sonido;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) { //el main
         sonido = new Sonido();
         sonido.iniciarMusicaFondo();
         loadLogos();
-        SwingUtilities.invokeLater(() -> showPresentationScreen());
+        SwingUtilities.invokeLater(() -> showPresentationScreen()); //muestra nuestra pantalla de presentación
     }
 
-    public static Sonido getSonido() {
+    public static Sonido getSonido() { //nos permite usar el mismo sonido en otras clases D: 
         return sonido;
     }
 
-    private static void loadLogos() {
+    private static void loadLogos() { //cargando
         try {
-            URL utpLogoURL = Penalty.class.getClassLoader().getResource("utp_logo.png");
-            URL fiscLogoURL = Penalty.class.getClassLoader().getResource("fisc_logo.png");
+            URL utpLogoURL = Penalty.class.getClassLoader().getResource("utp_logo.png"); //ehhh..carga las imagenes
+            URL fiscLogoURL = Penalty.class.getClassLoader().getResource("fisc_logo.png"); // si no pues, muestra error
 
             if (utpLogoURL != null) {
                 logoUniversidad = new ImageIcon(utpLogoURL).getImage();
@@ -48,8 +49,8 @@ public class Penalty {
         }
     }
 
-    private static void showPresentationScreen() {
-        JFrame presentationFrame = new JFrame("Presentación - Juego de Penales");
+    private static void showPresentationScreen() { //aqui se viene lo bueno (datazo)
+        JFrame presentationFrame = new JFrame("Presentación - Juego de Penales"); //nuestro JFrame gigantezco
         presentationFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -61,7 +62,7 @@ public class Penalty {
 
         JPanel presentationPanel = new JPanel(new BorderLayout()) {
             @Override
-            protected void paintComponent(Graphics g) {
+            protected void paintComponent(Graphics g) {  //aqui se dibuja el fondo fondo con toda la presentacion
                 super.paintComponent(g);
                 Graphics2D g2d = (Graphics2D) g;
                 g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -126,16 +127,16 @@ public class Penalty {
             }
         };
 
-        JButton startButton = new JButton("Iniciar Juego");
+        JButton startButton = new JButton("Iniciar Juego");  //boton de inicio después de los datazos generales
         startButton.setFont(new Font("Arial", Font.BOLD, 30));
         startButton.setBackground(new Color(0, 150, 0));
         startButton.setForeground(Color.WHITE);
         startButton.setFocusPainted(false);
         startButton.setBorder(BorderFactory.createEmptyBorder(15, 40, 15, 40));
         startButton.addActionListener(e -> {
-            sonido.reproducirClick();
-            presentationFrame.dispose();
-            startGame();
+            sonido.reproducirClick(); //sonido épico
+            presentationFrame.dispose(); //aqui se cierra épicamente la pantalla de presentación con sus datos
+            startGame(); //se inicia llamandolo aqui
         });
 
         JPanel buttonPanel = new JPanel();
@@ -148,7 +149,7 @@ public class Penalty {
         presentationFrame.setVisible(true);
     }
 
-    private static void startGame() {
+    private static void startGame() { //entra al frame de dificultad, llamándolo
         JFrame gameFrame = new JFrame("⚽ Juego de Penales ⚽");
         gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -158,7 +159,7 @@ public class Penalty {
         gameFrame.setUndecorated(true);
 
         gameFrame.setLocationRelativeTo(null);
-        gameFrame.setContentPane(new MenuPanel(gameFrame));
+        gameFrame.setContentPane(new MenuPanel(gameFrame)); //aqui, muestra el menu principal de dificultad
         gameFrame.setVisible(true);
     }
 }
