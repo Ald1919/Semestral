@@ -7,9 +7,11 @@ import java.awt.image.BufferedImage;
 public class MenuPanel extends JPanel {
     private final JFrame frame;
     private final Image backgroundImage;
+    private final Sonido sonido;
 
     public MenuPanel(JFrame frame) {
         this.frame = frame;
+        this.sonido = Penalty.getSonido();
         setLayout(new GridBagLayout());
 
         GridBagConstraints gbc = new GridBagConstraints();
@@ -49,7 +51,10 @@ public class MenuPanel extends JPanel {
 
         JButton exitButton = createStyledButton("Salir", new Color(200, 200, 200));
         exitButton.setPreferredSize(buttonSize);
-        exitButton.addActionListener(e -> System.exit(0));
+        exitButton.addActionListener(e -> {
+            sonido.reproducirClick();
+            System.exit(0);
+        });
         buttonContainer.add(exitButton, buttonGbc);
 
         gbc.gridx = 0;
@@ -67,6 +72,7 @@ public class MenuPanel extends JPanel {
     private JButton createDifficultyButton(String text, Color color, double difficulty) {
         JButton button = createStyledButton(text, color);
         button.addActionListener(e -> {
+            sonido.reproducirClick();
             frame.setContentPane(new JuegoPanel(frame, difficulty));
             frame.revalidate();
             frame.repaint();
