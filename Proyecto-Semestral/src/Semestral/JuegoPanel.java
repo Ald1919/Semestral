@@ -16,14 +16,15 @@ public class JuegoPanel extends JPanel {
     private boolean animacionActiva = false;
     private Timer timerAnimacionBalon;
     private Timer timerMensaje;
-
     private int screenWidth;
     private int screenHeight;
     private int arcoX, arcoY, arcoAncho, arcoAlto;
+    private final Sonido sonido;
 
     public JuegoPanel(JFrame frame, double dificultad) {
         this.frame = frame;
         this.dificultad = validateDifficulty(dificultad);
+        this.sonido = Penalty.getSonido();
         setLayout(null);
         setDoubleBuffered(true);
 
@@ -110,6 +111,7 @@ public class JuegoPanel extends JPanel {
     }
 
     private void iniciarDisparo(int zonaIndex) {
+        sonido.reproducirDisparo();
         animacionActiva = true;
         Rectangle zonaDisparo = zonas[zonaIndex];
         Point destinoBalon = new Point(
@@ -141,12 +143,17 @@ public class JuegoPanel extends JPanel {
 
     private Point calcularMovimientoPortero(Rectangle zonaDisparo, int zonaIndex) {
         Random rand = new Random();
+        boolean intentaAtajar = rand.nextDouble() < dificultad;
         int zonaPortero;
 
-        if (rand.nextDouble() < getProbabilidadAcertar()) {
-            zonaPortero = zonaIndex; // Moverse a la zona correcta
+        if (intentaAtajar) {
+            if (rand.nextDouble() < getProbabilidadAcertar()) {
+                zonaPortero = zonaIndex;
+            } else {
+                zonaPortero = rand.nextInt(9);
+            }
         } else {
-            zonaPortero = rand.nextInt(9); // Moverse a una zona aleatoria
+            zonaPortero = rand.nextInt(9);
         }
 
         Rectangle zonaDestino = zonas[zonaPortero];
@@ -157,9 +164,9 @@ public class JuegoPanel extends JPanel {
     }
 
     private double getProbabilidadAcertar() {
-        if (dificultad >= 0.75) return 0.90; // 90% de atajada en difícil
-        if (dificultad >= 0.45) return 0.60; // 60% de atajada en medio
-        return 0.30; // 30% de atajada en fácil
+        if (dificultad >= 0.75) return 0.95;
+        if (dificultad >= 0.45) return 0.50;
+        return 0.20;
     }
 
     private void finalizarDisparo(Rectangle zonaDisparo) {
@@ -204,9 +211,11 @@ public class JuegoPanel extends JPanel {
         if (atajada) {
             marcador.incrementarAtajadas();
             mensaje = "¡Atajada del portero!";
+            sonido.reproducirAtajada();
         } else {
             marcador.incrementarGoles();
             mensaje = "¡GOOOOOOL!";
+            sonido.reproducirGol();
         }
     }
 
@@ -224,6 +233,7 @@ public class JuegoPanel extends JPanel {
     }
 
     private void returnToMenu() {
+        sonido.reproducirClick();
         if (timerAnimacionBalon != null) timerAnimacionBalon.stop();
         if (portero != null) portero.detenerAnimacion();
         if (timerMensaje != null) timerMensaje.stop();
