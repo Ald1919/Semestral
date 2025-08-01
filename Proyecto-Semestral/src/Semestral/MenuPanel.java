@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class MenuPanel extends JPanel {
+public class MenuPanel extends JPanel {  //lo hereda, puede contener otros elementos
     private final JFrame frame;
     private final Image backgroundImage;
     private final Sonido sonido;
