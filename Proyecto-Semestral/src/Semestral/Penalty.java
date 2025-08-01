@@ -1,4 +1,4 @@
-package Semestral; //aqui inicia todo el juegazo
+package Semestral; //aqui inicia todo el juegazo, inicio del inicio
 //este es nuestro main, literalmente está de todo (datos, imagenes, sonido, etc)
 
 import javax.swing.*;
@@ -9,7 +9,7 @@ import java.net.URL;
 
 public class Penalty {
     private static Image logoUniversidad; //están en png 
-    private static Image logoFacultad;
+    private static Image logoFacultad; //png también
     private static Sonido sonido;
 
     public static void main(String[] args) { //el main
@@ -45,7 +45,7 @@ public class Penalty {
             }
 
         } catch (Exception e) {
-            System.err.println("Error inesperado al cargar imágenes: " + e.getMessage());
+            System.err.println("Error inesperado al cargar imágenes: " + e.getMessage()); //try catching 
         }
     }
 
@@ -97,22 +97,22 @@ public class Penalty {
                 }
 
                 g2d.setFont(new Font("Arial", Font.BOLD, 48));
-                String universidad = "UNIVERSIDAD TECNOLÓGICA DE PANAMÁ";
+                String universidad = "UNIVERSIDAD TECNOLÓGICA DE PANAMÁ"; //U
                 int uniWidth = g2d.getFontMetrics().stringWidth(universidad);
                 g2d.drawString(universidad, (getWidth() - uniWidth) / 2, 250);
 
                 g2d.setFont(new Font("Arial", Font.BOLD, 36));
-                String facultad = "FACULTAD DE INGENIERÍA DE SISTEMAS COMPUTACIONALES";
+                String facultad = "FACULTAD DE INGENIERÍA DE SISTEMAS COMPUTACIONALES"; //facultad
                 int facWidth = g2d.getFontMetrics().stringWidth(facultad);
                 g2d.drawString(facultad, (getWidth() - facWidth) / 2, 310);
 
                 g2d.setFont(new Font("Arial", Font.BOLD, 28));
                 int textStartX = getWidth() / 8;
-                g2d.drawString("Carrera: LICENCIATURA EN INGENIERÍA DE SOFTWARE", textStartX, 400);
-                g2d.drawString("Proyecto: Juego de Penales", textStartX, 440);
-                g2d.drawString("Curso: PROGRAMACIÓN DE SOFTWARE I", textStartX, 480);
+                g2d.drawString("Carrera: LICENCIATURA EN INGENIERÍA DE SOFTWARE", textStartX, 400); //carrera
+                g2d.drawString("Proyecto: Juego de Penales", textStartX, 440); //titulo, proyecto
+                g2d.drawString("Curso: PROGRAMACIÓN DE SOFTWARE I", textStartX, 480); //materia o curso
 
-                g2d.drawString("Integrantes:", textStartX, 540);
+                g2d.drawString("Integrantes:", textStartX, 540);  //integrantes
                 g2d.setFont(new Font("Arial", Font.PLAIN, 24));
                 g2d.drawString("1. FELIX CHUNG - 8-1035-1686", textStartX + 20, 575);
                 g2d.drawString("2. ALEXIS HE - 8-1032-619", textStartX + 20, 610);
@@ -120,10 +120,10 @@ public class Penalty {
                 g2d.drawString("4. ALDAHIR VERGARA - 8-1026-2487", textStartX + 20, 680);
 
                 g2d.setFont(new Font("Arial", Font.BOLD, 28));
-                g2d.drawString("Profesor: RODRIGO YÁNGÜEZ", textStartX, getHeight() - 100);
+                g2d.drawString("Profesor: RODRIGO YÁNGÜEZ", textStartX, getHeight() - 100); //profesor
 
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                g2d.drawString("Fecha: " + dateFormat.format(new Date()), textStartX, getHeight() - 60);
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy"); //fecha
+                g2d.drawString("Fecha: " + dateFormat.format(new Date()), textStartX, getHeight() - 60); 
             }
         };
 
