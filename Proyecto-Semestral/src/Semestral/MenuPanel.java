@@ -1,10 +1,10 @@
-package Semestral;
+package Semestral; //nada más es disque la pantalla de seleccion; el menú para la dificultad
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class MenuPanel extends JPanel {  //lo hereda, puede contener otros elementos
+public class MenuPanel extends JPanel {  //lo hereda, puede contener otros elementos, por eso lo extiende
     private final JFrame frame;
     private final Image backgroundImage;
     private final Sonido sonido;
@@ -18,7 +18,7 @@ public class MenuPanel extends JPanel {  //lo hereda, puede contener otros eleme
         gbc.fill = GridBagConstraints.BOTH;
         gbc.insets = new Insets(20, 20, 20, 20);
 
-        JLabel titleLabel = new JLabel("JUEGO DE PENALES", SwingConstants.CENTER); //titulo
+        JLabel titleLabel = new JLabel("JUEGO DE PENALES", SwingConstants.CENTER); //titulazo
         titleLabel.setFont(new Font("Arial", Font.BOLD, 80)); //su estilo
         titleLabel.setForeground(Color.WHITE);
 
