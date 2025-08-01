@@ -1,4 +1,4 @@
-package Semestral;
+package Semestral; //aqui inicia todo el juegazo
 
 import javax.swing.*;
 import java.awt.*;
