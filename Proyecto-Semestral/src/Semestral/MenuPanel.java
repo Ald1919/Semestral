@@ -18,8 +18,8 @@ public class MenuPanel extends JPanel {  //lo hereda, puede contener otros eleme
         gbc.fill = GridBagConstraints.BOTH;
         gbc.insets = new Insets(20, 20, 20, 20);
 
-        JLabel titleLabel = new JLabel("JUEGO DE PENALES", SwingConstants.CENTER);
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 80));
+        JLabel titleLabel = new JLabel("JUEGO DE PENALES", SwingConstants.CENTER); //titulo
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 80)); //su estilo
         titleLabel.setForeground(Color.WHITE);
 
         gbc.gridx = 0;
@@ -37,19 +37,19 @@ public class MenuPanel extends JPanel {  //lo hereda, puede contener otros eleme
 
         Dimension buttonSize = new Dimension(500, 100);
 
-        JButton easyButton = createDifficultyButton("Fácil", new Color(100, 255, 100), 0.2);
+        JButton easyButton = createDifficultyButton("Fácil", new Color(100, 255, 100), 0.2); //crea boton facil
         easyButton.setPreferredSize(buttonSize);
         buttonContainer.add(easyButton, buttonGbc);
 
-        JButton mediumButton = createDifficultyButton("Medio", new Color(255, 255, 100), 0.5);
+        JButton mediumButton = createDifficultyButton("Medio", new Color(255, 255, 100), 0.5); //boton medio
         mediumButton.setPreferredSize(buttonSize);
         buttonContainer.add(mediumButton, buttonGbc);
 
-        JButton hardButton = createDifficultyButton("Difícil", new Color(255, 100, 100), 0.8);
+        JButton hardButton = createDifficultyButton("Difícil", new Color(255, 100, 100), 0.8); //boton dificil
         hardButton.setPreferredSize(buttonSize);
         buttonContainer.add(hardButton, buttonGbc);
 
-        JButton exitButton = createStyledButton("Salir", new Color(200, 200, 200));
+        JButton exitButton = createStyledButton("Salir", new Color(200, 200, 200)); //salir
         exitButton.setPreferredSize(buttonSize);
         exitButton.addActionListener(e -> {
             sonido.reproducirClick();
@@ -66,10 +66,10 @@ public class MenuPanel extends JPanel {  //lo hereda, puede contener otros eleme
         gbc.gridwidth = 1;
         gbc.weighty = 0.0;
 
-        backgroundImage = createBackgroundImage();
+        backgroundImage = createBackgroundImage(); //el fondo fondo
     }
 
-    private JButton createDifficultyButton(String text, Color color, double difficulty) {
+    private JButton createDifficultyButton(String text, Color color, double difficulty) { //entra a la dificultad
         JButton button = createStyledButton(text, color);
         button.addActionListener(e -> {
             sonido.reproducirClick();
@@ -80,7 +80,7 @@ public class MenuPanel extends JPanel {  //lo hereda, puede contener otros eleme
         return button;
     }
 
-    private JButton createStyledButton(String text, Color color) {
+    private JButton createStyledButton(String text, Color color) { //estética del boton
         JButton button = new JButton(text);
         button.setFont(new Font("Arial", Font.BOLD, 36));
         button.setBackground(color);
@@ -93,7 +93,7 @@ public class MenuPanel extends JPanel {  //lo hereda, puede contener otros eleme
         return button;
     }
 
-    private Image createBackgroundImage() {
+    private Image createBackgroundImage() { //crea el fondo
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         BufferedImage image = new BufferedImage(screenSize.width, screenSize.height, BufferedImage.TYPE_INT_RGB);
         Graphics2D g2d = image.createGraphics();
@@ -113,7 +113,7 @@ public class MenuPanel extends JPanel {  //lo hereda, puede contener otros eleme
     }
 
     @Override
-    protected void paintComponent(Graphics g) {
+    protected void paintComponent(Graphics g) { //nuestro dinujito
         super.paintComponent(g);
         g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
     }
